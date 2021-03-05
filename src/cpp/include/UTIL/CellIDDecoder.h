@@ -83,8 +83,12 @@ namespace UTIL{
      */
     inline const BitField64 & operator()( const T* hit ){  
       
-      if( hit != _oldHit && hit ) {
-	
+      if(
+             hit &&
+             hit->getCellID0()!=_oldHit->getCellID0() &&
+             hit->getCellID1()!=_oldHit->getCellID1()
+         ) {
+
 
 	lcio::long64 val = lcio::long64( hit->getCellID0() & 0xffffffff ) 
  	  |        ( lcio::long64( hit->getCellID1() ) << 32      ) ;
